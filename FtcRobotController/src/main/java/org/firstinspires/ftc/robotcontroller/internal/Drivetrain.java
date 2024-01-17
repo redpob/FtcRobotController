@@ -3,7 +3,10 @@ package org.firstinspires.ftc.robotcontroller.internal;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.HardwareMap;
+
+import org.checkerframework.checker.units.qual.Angle;
 import org.firstinspires.ftc.robotcore.external.Telemetry;
+import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 
 public class Drivetrain {
     public DcMotorEx FRMotor;
@@ -19,10 +22,10 @@ public class Drivetrain {
         BLMotor = hardwareMap.get(DcMotorEx.class, "BL");
 
         // Set Directions
-        FRMotor.setDirection(DcMotor.Direction.REVERSE);
-        FLMotor.setDirection(DcMotor.Direction.REVERSE);
+        FRMotor.setDirection(DcMotor.Direction.FORWARD);
+        FLMotor.setDirection(DcMotor.Direction.FORWARD);
         BRMotor.setDirection(DcMotor.Direction.FORWARD);
-        BLMotor.setDirection(DcMotor.Direction.REVERSE);
+        BLMotor.setDirection(DcMotor.Direction.FORWARD);
 
         // Set Motor Mode
         FRMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
@@ -55,5 +58,8 @@ public class Drivetrain {
         telemetry.addLine("MECANUM WHEELS");
         telemetry.addLine(String.format("Front Motor Power: %f %f", FLMotor.getPower(), FRMotor.getPower()));
         telemetry.addLine(String.format(" Back Motor Power: %f %f", BLMotor.getPower(), BRMotor.getPower()));
+        telemetry.addLine(String.format("Front Motor Power: %f %f", FLMotor.getVelocity(AngleUnit.DEGREES), FRMotor.getVelocity(AngleUnit.DEGREES)));
+        telemetry.addLine(String.format(" Back Motor Power: %f %f", BLMotor.getVelocity(AngleUnit.DEGREES), BRMotor.getVelocity(AngleUnit.DEGREES)));
+        telemetry.addLine();
     }
 }
