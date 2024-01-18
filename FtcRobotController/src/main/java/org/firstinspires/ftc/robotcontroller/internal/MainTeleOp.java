@@ -10,6 +10,13 @@ import org.firstinspires.ftc.robotcore.external.navigation.AxesOrder;
 import org.firstinspires.ftc.robotcore.external.navigation.AxesReference;
 import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
 
+/*
+0 FL
+1 FR
+2 BR
+3 BL
+ */
+
 @TeleOp(name = "CLICK THIS !!!")
 public class MainTeleOp extends OpMode {
     Drivetrain drivetrain;
@@ -40,7 +47,10 @@ public class MainTeleOp extends OpMode {
 
     @Override
     public void loop() {
-        drivetrain.drive(gamepad1.left_stick_x, -gamepad1.left_stick_y, gamepad1.right_stick_x);
+        drivetrain.drive(gamepad1.left_stick_x * (1 - 0.9 * gamepad1.right_trigger),
+                        -gamepad1.left_stick_y * (1 - 0.9 * gamepad1.right_trigger),
+                        gamepad1.right_stick_x * (1 - 0.9 * gamepad1.right_trigger));
+//        drivetrain.drive(0.1, 0, 0);
         telemetry();
     }
 
