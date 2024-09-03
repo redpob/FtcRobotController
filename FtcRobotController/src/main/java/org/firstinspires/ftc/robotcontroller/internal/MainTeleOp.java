@@ -20,6 +20,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
 @TeleOp(name = "CLICK THIS !!!")
 public class MainTeleOp extends OpMode {
     Drivetrain drivetrain;
+    Trebuchet trebuchet;
     IMU imu;
     Orientation angles;
 
@@ -50,6 +51,7 @@ public class MainTeleOp extends OpMode {
         drivetrain.drive(gamepad1.left_stick_x * (1 - 0.9 * gamepad1.right_trigger),
                         -gamepad1.left_stick_y * (1 - 0.9 * gamepad1.right_trigger),
                         gamepad1.right_stick_x * (1 - 0.9 * gamepad1.right_trigger));
+        trebuchet.power(gamepad1.left_trigger);
 //        drivetrain.drive(0.1, 0, 0);
         telemetry();
     }
@@ -62,6 +64,7 @@ public class MainTeleOp extends OpMode {
         telemetry.addLine();
 
         drivetrain.telemetry(telemetry);
+        trebuchet.telemetry(telemetry);
 
         telemetry.addLine("ANGLES");
         telemetry.addData("First Angle", angles.firstAngle);
