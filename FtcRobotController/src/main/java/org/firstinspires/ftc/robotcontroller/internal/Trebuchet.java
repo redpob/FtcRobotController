@@ -4,38 +4,43 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
-import org.checkerframework.checker.units.qual.Angle;
 import org.firstinspires.ftc.robotcore.external.Telemetry;
-import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 
 public class Trebuchet {
-    public DcMotorEx TrebuchetMotor;
+    public DcMotorEx trebuchetMotor;
 
     public Trebuchet(HardwareMap hardwareMap) {
         // Connect Motors
-        TrebuchetMotor = hardwareMap.get(DcMotorEx.class, "Catapult");
+        trebuchetMotor = hardwareMap.get(DcMotorEx.class, "Catapult");
 
         // Set Directions
-        TrebuchetMotor.setDirection(DcMotor.Direction.FORWARD);
+        trebuchetMotor.setDirection(DcMotor.Direction.FORWARD);
 
         // Set Motor Mode
-        TrebuchetMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        trebuchetMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
         // Set Zero Power Behavior
-        TrebuchetMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        trebuchetMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
         // Stops Motors on INIT
-        TrebuchetMotor.setPower(0);
+        trebuchetMotor.setPower(0);
 
     }
 
-    public void power(double x) {
-        TrebuchetMotor.setPower(x);
+    public void setPower(double power) {
+        trebuchetMotor.setPower(power);
+    }
+
+    public void releaseUsingEncoder(double power) {
+        trebuchetMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        trebuchetMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
+        trebuchetMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
     }
 
     public void telemetry(Telemetry telemetry) {
         telemetry.addLine("TREBUCHET");
-        telemetry.addLine(String.format("Trebuchet Motor Power: %f", TrebuchetMotor.getPower()));
+        telemetry.addLine(String.format("Trebuchet Motor Power: %f", trebuchetMotor.getPower()));
         telemetry.addLine();
     }
 }
