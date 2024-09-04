@@ -31,6 +31,7 @@ public class MainTeleOp extends OpMode {
     @Override
     public void init() {
         drivetrain  = new Drivetrain(hardwareMap);
+        trebuchet  = new Trebuchet(hardwareMap);
 
         // IMU
         RevHubOrientationOnRobot.LogoFacingDirection logo = RevHubOrientationOnRobot.LogoFacingDirection.BACKWARD;  // logo facing up
@@ -45,19 +46,21 @@ public class MainTeleOp extends OpMode {
         angles = imu.getRobotOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES);
     }
 
-    public void init_loop() {}
+    public void init_loop() {
+        telemetry();
+    }
 
     public void start() {}
 
     @Override
     public void loop() {
-        drivetrain.drive(gamepad1.left_stick_x * (1 - 0.9 * gamepad1.right_trigger),
-                        -gamepad1.left_stick_y * (1 - 0.9 * gamepad1.right_trigger),
-                        gamepad1.right_stick_x * (1 - 0.9 * gamepad1.right_trigger));
-        trebuchet.setPower(gamepad1.left_trigger / 4);
-        if(gamepad1.y) {
-            trebuchet.setPower(-1);
-        }
+//        drivetrain.drive(gamepad1.left_stick_x * (1 - 0.9 * gamepad1.right_trigger),
+//                        -gamepad1.left_stick_y * (1 - 0.9 * gamepad1.right_trigger),
+//                        gamepad1.right_stick_x * (1 - 0.9 * gamepad1.right_trigger));
+        trebuchet.setPower(-gamepad1.left_stick_y);
+//        if(gamepad1.y) {
+//            trebuchet.setPower(-1);
+//        }
 
 //        drivetrain.drive(0.1, 0, 0);
         telemetry();
