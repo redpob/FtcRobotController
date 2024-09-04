@@ -54,7 +54,7 @@ public class MainTeleOp extends OpMode {
         drivetrain.drive(gamepad1.left_stick_x * (1 - 0.9 * gamepad1.right_trigger),
                         -gamepad1.left_stick_y * (1 - 0.9 * gamepad1.right_trigger),
                         gamepad1.right_stick_x * (1 - 0.9 * gamepad1.right_trigger));
-        trebuchet.setPower(gamepad1.left_trigger);
+        trebuchet.setPower(gamepad1.left_trigger / 4);
         if(gamepad1.y) {
             trebuchet.setPower(-1);
         }
