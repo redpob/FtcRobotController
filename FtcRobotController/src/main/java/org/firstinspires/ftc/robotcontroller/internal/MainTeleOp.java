@@ -11,10 +11,13 @@ import org.firstinspires.ftc.robotcore.external.navigation.AxesReference;
 import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
 
 /*
-0 FL
-1 FR
-2 BR
-3 BL
+Control Hub:
+    0 FL
+    1 FR
+    2 BR
+    3 BL
+Expansion Hub:
+    0 Catapult
  */
 
 @TeleOp(name = "CLICK THIS !!!")
