@@ -18,6 +18,7 @@ Control Hub:
     3 BL
 Expansion Hub:
     0 Catapult
+    1 Catapult2
  */
 
 @TeleOp(name = "CLICK THIS !!!")
@@ -58,6 +59,10 @@ public class MainTeleOp extends OpMode {
 //                        -gamepad1.left_stick_y * (1 - 0.9 * gamepad1.right_trigger),
 //                        gamepad1.right_stick_x * (1 - 0.9 * gamepad1.right_trigger));
         trebuchet.setPower(-gamepad1.left_stick_y);
+        trebuchet.setPower2(-gamepad1.right_stick_y);
+        if(gamepad1.x) {
+            trebuchet.resetEncoder();
+        }
 //        if(gamepad1.y) {
 //            trebuchet.setPower(-1);
 //        }
